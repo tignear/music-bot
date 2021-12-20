@@ -8,13 +8,26 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2018",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strict": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@music-bot/cache-minio": ["libs/cache-minio/src/index.ts"],
+      "@music-bot/domain-youtube": ["libs/domain-youtube/src/index.ts"],
+      "@music-bot/resolver-interface": ["libs/resolver-interface/src/index.ts"],
+      "@music-bot/resolver-minio": ["libs/resolver-minio/src/index.ts"],
+      "@music-bot/resolver-url": ["libs/resolver-url/src/index.ts"],
+      "@music-bot/resolver-youtube-ytdl": [
+        "libs/resolver-youtube-ytdl/src/index.ts"
+      ],
+      "@music-bot/util-webm-opus-extraction": [
+        "libs/util-webm-opus-extraction/src/index.ts"
+      ],
+      "@music-bot/writer-interface": ["libs/writer-interface/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

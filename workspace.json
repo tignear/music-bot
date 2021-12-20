@@ -1,7 +1,125 @@
 {
   "version": 2,
-  "projects": {},
+  "projects": {
+    "discord": {
+      "root": "apps/discord",
+      "sourceRoot": "apps/discord/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/discord",
+            "main": "apps/discord/src/main.ts",
+            "tsConfig": "apps/discord/tsconfig.app.json"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/discord/src/environments/environment.ts",
+                  "with": "apps/discord/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "discord:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/discord/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/discord"],
+          "options": {
+            "jestConfig": "apps/discord/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "domain-youtube": {
+      "root": "libs/domain-youtube",
+      "sourceRoot": "libs/domain-youtube/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/domain-youtube/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/domain-youtube"],
+          "options": {
+            "jestConfig": "libs/domain-youtube/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "resolver-interface": {
+      "root": "libs/resolver-interface",
+      "sourceRoot": "libs/resolver-interface/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/resolver-interface/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/resolver-interface"],
+          "options": {
+            "jestConfig": "libs/resolver-interface/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "resolver-youtube-ytdl": {
+      "root": "libs/resolver-youtube-ytdl",
+      "sourceRoot": "libs/resolver-youtube-ytdl/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/resolver-youtube-ytdl/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/resolver-youtube-ytdl"],
+          "options": {
+            "jestConfig": "libs/resolver-youtube-ytdl/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/node"
+  },
+  "defaultProject": "discord"
 }
