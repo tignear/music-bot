@@ -155,7 +155,7 @@ class Subscription {
   get now_playing() {
     return this.currentTrack;
   }
-  get playbackDuration() {
+  get playback_duration() {
     const state = this.player.state;
     if (state.status !== AudioPlayerStatus.Idle) {
       return state.resource.playbackDuration;
@@ -196,7 +196,7 @@ export class AudioService {
     const { embeds, tracks } = await this.processor.process(args[0], {
       language,
       getQueueTrack: () => this.queue.get(guildId, 0) ?? [],
-      currentTrackEstTime: () => subscription ? ((subscription.now_playing?.playback_time ?? 0) - subscription.playbackDuration) : 0
+      currentTrackEstTime: () => subscription ? ((subscription.now_playing?.playback_time ?? 0) - subscription.playback_duration) : 0
     });
 
     if (!tracks.length) {
@@ -307,7 +307,7 @@ export class AudioService {
     const subscription = this.subscriptions.get(message.guild.id);
     const len = all.length;
     const embeds = queue.map((track) => format_track(track));
-    const est = all.reduce((a, b) => a + b.playback_time, 0) + (subscription ? ((subscription.now_playing?.playback_time ?? 0) - subscription.playbackDuration) : 0);
+    const est = all.reduce((a, b) => a + b.playback_time, 0) + (subscription ? ((subscription.now_playing?.playback_time ?? 0) - subscription.playback_duration) : 0);
     await message.channel.send({
       content: [
         `${page + 1}/${Math.floor((len+ 4) / 5)}(${len})`,
@@ -328,7 +328,7 @@ export class AudioService {
       });
       return;
     }
-    const embed = format_track(subscription.now_playing, subscription.playbackDuration);
+    const embed = format_track(subscription.now_playing, subscription.playback_duration);
     await message.channel.send({
       embeds: [embed]
     });
