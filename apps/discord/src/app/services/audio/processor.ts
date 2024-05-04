@@ -1,12 +1,12 @@
 import { HandleBase, Resolver } from "@music-bot/resolver-interface";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import ytpl = require("ytpl");
 import { Track, YoutubeVideoTrack } from "./track";
 import i18n from "../../languages";
 import { Metadata } from "@music-bot/domain-youtube";
 interface ProcessorResult {
   tracks: Track[];
-  embeds: MessageEmbed[];
+  embeds: EmbedBuilder[];
 }
 interface ProcessorContext {
   language: string;

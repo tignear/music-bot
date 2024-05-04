@@ -10,12 +10,12 @@
   "private": true,
   "dependencies": {
     "@discordjs/opus": "^0.6.0",
-    "@discordjs/voice": "^0.6.0",
+    "@discordjs/voice": "^0.17.0",
     "bunyan": "^1.8.15",
-    "discord.js": "^13.1.0",
+    "discord.js": "^14.15.1",
     "tslib": "^2.0.0",
     "tweetnacl": "^1.0.3",
-    "ytdl-core": "^4.9.1",
+    "ytdl-core": "^4.11.5",
     "ytpl": "^2.2.3"
   },
   "devDependencies": {

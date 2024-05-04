@@ -1,9 +1,9 @@
-import { Client, Guild, Message, Permissions } from "discord.js";
+import { Client, Guild, Message, OAuth2Scopes, Partials, Permissions } from "discord.js";
 import { processCommand } from "./app/commands";
 import { logger } from "./app/logger";
 const client = new Client({
-  partials: ["GUILD_MEMBER", "USER"],
-  intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_VOICE_STATES"]
+  partials: [Partials.GuildMember, Partials.User],
+  intents: ["Guilds", "GuildMessages", "GuildVoiceStates", "MessageContent"]
 });
 let clientUserMentionPrefixRegex!: RegExp;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -36,10 +36,8 @@ client.once("ready", () => {
   clientUserMentionPrefixRegex = new RegExp(`^<@!?${client.user!.id}>`);
   logger.info("ready!");
   logger.info(client.generateInvite({
-    scopes: ["bot", "applications.commands"],
-    permissions: new Permissions([
-      "SEND_MESSAGES", "VIEW_CHANNEL", "CONNECT", "SPEAK"
-    ])
+    scopes: [OAuth2Scopes.Bot, OAuth2Scopes.ApplicationsCommands],
+    permissions: ["SendMessages", "ViewChannel", "Connect", "Speak"]
   }))
 });
 client.login();

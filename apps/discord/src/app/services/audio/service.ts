@@ -214,20 +214,20 @@ export class AudioService {
       return;
     }
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const permissions = voiceChannel.permissionsFor(message.guild!.me!);
-    if (!permissions.has("VIEW_CHANNEL")) {
+    const permissions = voiceChannel.permissionsFor(await message.guild.members.fetchMe());
+    if (!permissions.has("ViewChannel")) {
       await message.channel.send({
         embeds: [i18n(language, "MISSING_VIEW_CHANNEL_PERMISSION")()]
       });
       return;
     }
-    if (!permissions.has("CONNECT")) {
+    if (!permissions.has("Connect")) {
       await message.channel.send({
         embeds: [i18n(language, "MISSING_CONNECT_PERMISSION")()]
       });
       return;
     }
-    if (!permissions.has("MOVE_MEMBERS") && voiceChannel.full) {
+    if (!permissions.has("MoveMembers") && voiceChannel.full) {
       await message.channel.send({
         embeds: [i18n(language, "VOICE_CHANNEL_FULL")()]
       });

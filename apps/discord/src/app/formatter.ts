@@ -1,4 +1,4 @@
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import { YoutubeVideoTrack } from "./services/audio/track";
 
 export function format_playback_time(msec: number) {
@@ -15,18 +15,21 @@ export function format_playback_time(msec: number) {
 export function format_track(track: YoutubeVideoTrack, playbackDuration?: number) {
   const pt = format_playback_time(track.playback_time);
   const text = playbackDuration ? `${format_playback_time(playbackDuration)}/${pt}` : pt;
-  return new MessageEmbed({
+  const builder = new EmbedBuilder({
     title: track.title,
     url: track.url,
     author: {
       name: track.author.name,
       url: track.author.url
     },
-    thumbnail: {
-      url: track.thumbnail ?? undefined,
-    },
+
     footer: {
       text
     }
-  }).setColor("DARK_NAVY");
+  });
+  builder.setThumbnail(
+    track.thumbnail ?? null
+  );
+  builder.setColor("DarkNavy");
+  return builder;
 }
