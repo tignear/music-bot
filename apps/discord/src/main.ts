@@ -1,4 +1,4 @@
-import { Client, Guild, Message, OAuth2Scopes, Partials, Permissions } from "discord.js";
+import { Client, Guild, Message, OAuth2Scopes, Partials } from "discord.js";
 import { processCommand } from "./app/commands";
 import { logger } from "./app/logger";
 const client = new Client({
